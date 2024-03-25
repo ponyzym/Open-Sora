@@ -31,7 +31,11 @@ vae = dict(
 )
 text_encoder = dict(
     type="t5",
+<<<<<<< HEAD
     from_pretrained="./pretrained_models/t5",
+=======
+    from_pretrained="DeepFloyd/t5-v1_1-xxl",
+>>>>>>> upstream/main
     model_max_length=120,
     shardformer=True,
 )

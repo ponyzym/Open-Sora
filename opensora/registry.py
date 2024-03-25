@@ -16,10 +16,10 @@ def build_module(module, builder, **kwargs):
         Any: The built module.
     """
     if isinstance(module, dict):
-        cfg = deepcopy(module)
+        cfg = deepcopy(module)  # 拷贝模型的配置
         for k, v in kwargs.items():
-            cfg[k] = v
-        return builder.build(cfg)
+            cfg[k] = v  # 合并输入解析器参数的配置
+        return builder.build(cfg)  # 从cfg.vae.type的名称，映射/构建注册器对应注册的模块
     elif isinstance(module, nn.Module):
         return module
     elif module is None:
@@ -28,12 +28,12 @@ def build_module(module, builder, **kwargs):
         raise TypeError(f"Only support dict and nn.Module, but got {type(module)}.")
 
 
-MODELS = Registry(
+MODELS = Registry(  # 注册模型
     "model",
     locations=["opensora.models"],
 )
 
-SCHEDULERS = Registry(
+SCHEDULERS = Registry(  # 注册采样器
     "scheduler",
     locations=["opensora.schedulers"],
 )

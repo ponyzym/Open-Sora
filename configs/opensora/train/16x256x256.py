@@ -25,11 +25,11 @@ model = dict(
 )
 vae = dict(
     type="VideoAutoencoderKL",
-    from_pretrained="stabilityai/sd-vae-ft-ema",
+    from_pretrained="/data/mazhiyuan/Open-Sora/pretrained_models/vae/sd-vae-ft-ema",
 )
 text_encoder = dict(
     type="t5",
-    from_pretrained="DeepFloyd/t5-v1_1-xxl",
+    from_pretrained="./pretrained_models/t5",
     model_max_length=120,
     shardformer=True,
 )

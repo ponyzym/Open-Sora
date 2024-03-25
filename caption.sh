@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=0,1,2,3 python -m tools.caption.caption_llava ad_samples ad_samples/caption.csv

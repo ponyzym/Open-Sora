@@ -3,7 +3,7 @@ import json
 import os
 from glob import glob
 
-from mmengine.config import Config
+from mmengine.config import Confi g
 from torch.utils.tensorboard import SummaryWriter
 
 

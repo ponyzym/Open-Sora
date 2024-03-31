@@ -3,7 +3,7 @@ import json
 import os
 from glob import glob
 
-from mmengine.config import Confi g
+from mmengine.config import Config
 from torch.utils.tensorboard import SummaryWriter
 
 
@@ -11,7 +11,7 @@ def parse_args(training=False):
     parser = argparse.ArgumentParser()
 
     # model config
-    parser.add_argument("config", help="model config file path")
+    parser.add_argument("config", help="model config file path")  # 配置文件路径
 
     parser.add_argument("--seed", default=42, type=int, help="generation seed")
     parser.add_argument("--ckpt-path", type=str, help="path to model ckpt; will overwrite cfg.ckpt_path if specified")

@@ -280,7 +280,7 @@ def main(args):
         frames = []
         video_lengths = []
         for video_file in video_files:
-            frame, length = extract_frames(os.path.join(args.video_folder, video_file))
+            frame, length = extract_frames(os.path.join(args.video_folder, video_file), args.sample_frame_num)
             if len(frame) < 3:
                 continue
             frames.append(frame)
@@ -347,6 +347,7 @@ if __name__ == "__main__":
     parser.add_argument("output_file", type=str)
     parser.add_argument("--bs", type=int, default=32)
     parser.add_argument("--prompt", type=str, default="three_frames")
+    parser.add_argument("--sample_frame_num", type=int, default=3)
     args = parser.parse_args()
 
     main(args)

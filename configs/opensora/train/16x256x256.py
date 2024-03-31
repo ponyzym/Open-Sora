@@ -40,7 +40,7 @@ scheduler = dict(
 
 # Others
 seed = 42
-outputs = "outputs"
+outputs = "results"
 wandb = False
 
 epochs = 1000

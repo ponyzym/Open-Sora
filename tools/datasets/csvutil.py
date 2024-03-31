@@ -21,7 +21,7 @@ def get_video_length(path):
     import cv2
 
     cap = cv2.VideoCapture(path)
-    return int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    return int(cap.get(cv2.CAP_PROP_FRAME_COUNT))  # 获取视频帧数
 
 
 def main(args):
@@ -29,7 +29,7 @@ def main(args):
     output_path = args.output
     if output_path is None:
         name = os.path.basename(input_path)
-        name, ext = os.path.splitext(name)
+        name, ext = os.path.splitext(name)  # 文件名，扩展名
         if args.fmin is not None:
             name += f"_fmin_{args.fmin}"
         if args.fmax is not None:

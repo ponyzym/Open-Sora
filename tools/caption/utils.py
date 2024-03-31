@@ -32,15 +32,19 @@ def encode_image(image_path):
         return base64.b64encode(image_file.read()).decode("utf-8")
 
 
-def extract_frames(video_path, points=(0.2, 0.5, 0.8), base_64=False):
+def extract_frames(video_path, sample_frame_num, points=(0.2, 0.5, 0.8), base_64=False):
     cap = cv2.VideoCapture(video_path)
     length = get_video_length(cap)
-    points = [int(length * point) for point in points]
+    assert sample_frame_num <= length, "The number of sampled frames exceeds the total video length!"
+    if sample_frame_num == 3:
+        points = [int(length * point) for point in points]
+    if sample_frame_num > 3:
+        points = [int(length * point / sample_frame_num) for point in range(sample_frame_num)]
     frames = []
     if length < 3:
         return frames, length
     for point in points:
-        cap.set(cv2.CAP_PROP_POS_FRAMES, point)
+        cap.set(cv2.CAP_PROP_POS_FRAMES, point)  # 设置要获取的帧号
         ret, frame = cap.read()
         if not base_64:
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)

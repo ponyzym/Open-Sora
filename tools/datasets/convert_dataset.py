@@ -5,7 +5,7 @@ import os
 from torchvision.datasets import ImageNet
 
 
-def get_filelist(file_path):
+def get_filelist(file_path):  #深度优先，返回文件目录下所有的文件路径：文件目录/子目录/../文件名
     Filelist = []
     for home, dirs, files in os.walk(file_path):
         for filename in files:
@@ -36,11 +36,11 @@ def process_imagenet(root, split):
     print(f"Saved {len(samples)} samples to {output}.")
 
 
-def process_ucf101(root, split):
+def process_ucf101(root, split):  # return: [/data/ucf_101/split/class/video_1.avi, class] -> ucf101_split.csv
     root = os.path.expanduser(root)
     video_lists = get_filelist(os.path.join(root, split))
     classes = [x.split("/")[-2] for x in video_lists]
-    classes = [split_by_capital(x) for x in classes]
+    classes = [split_by_capital(x) for x in classes]  # 返回以大写字母分割后的字符串
     samples = list(zip(video_lists, classes))
     output = f"ucf101_{split}.csv"
 
